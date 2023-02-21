@@ -12,7 +12,7 @@
 			サンプルレコード
 			*/
 			let post_data = {
-				img_type : 'url.jpg',
+				img_type : 'https://dummyimage.com/600x400/000/fff',
 				id : 1,
 				first_name : "Taro",
 				last_name : "Yamada",
@@ -34,7 +34,7 @@
 		<h2>フォーム入力</h2>
 		
 		<form class="row g-3 needs-validation" novalidate name="myForm">
-			<img src="" name="img_type">
+			<p><img src="" name="img_type" class="w-25"></p>
 			<div class="col-3">
 				<label for="first_name" class="form-label">First name</label>
 				<input type="text" name="first_name" class="form-control" id="first_name" value="" required>
