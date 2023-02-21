@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ja">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1">
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"></link>
+		<script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+		<script defer src="./js/SetFormRecords.js"></script>
+		<script>
+		document.addEventListener("DOMContentLoaded", () => {
+			/*
+			サンプルレコード
+			*/
+			let post_data = {
+				img_type : 'url.jpg',
+				id : 1,
+				first_name : "Taro",
+				last_name : "Yamada",
+				pref : "京都",
+				multi_type : "1,2",
+				turn : 1,
+				way : "電車,バス",
+				tags : "PHP,JavaScript",
+				memo : "テスト内容\nテスト内容"
+			}
+
+			let setFormRecords = new SetFormRecords("myForm");
+			setFormRecords.setData(post_data);
+		});
+		</script>
+		<title>フォーム入力</title>
+	</head>
+	<body>
+		<h2>フォーム入力</h2>
+		
+		<form class="row g-3 needs-validation" novalidate name="myForm">
+			<img src="" name="img_type">
+			<div class="col-3">
+				<label for="first_name" class="form-label">First name</label>
+				<input type="text" name="first_name" class="form-control" id="first_name" value="" required>
+				<div class="valid-feedback">Looks good!</div>
+			</div>
+			<div class="col-3">
+				<label for="last_name" class="form-label">Last name</label>
+				<input type="text" name="last_name" class="form-control" id="last_name" value="" required>
+				<div class="valid-feedback">Looks good!</div>
+			</div>
+			<div class="col-3">
+				<label for="pref" class="form-label">State</label>
+				<select name="pref" class="form-select" id="pref" required>
+					<option value="">Choose...</option>
+					<option value="大阪">大阪</option>
+					<option value="京都">京都</option>
+					<option value="東京">東京</option>
+				</select>
+				<div class="invalid-feedback">Please select a valid state.</div>
+			</div>
+			<div class="col-12">
+				<div class="form-check form-check-inline">
+					<input class="form-check-input" type="radio" name="turn" value="0"
+						id="turn0">
+					<label class="form-check-label" for="turn0"> OFF </label>
+				</div>
+				<div class="form-check form-check-inline">
+					<input class="form-check-input" type="radio" name="turn" value="1"
+						id="turn1">
+					<label class="form-check-label" for="turn1"> ON </label>
+				</div>
+			</div>
+			<div class="col-12">
+				<div class="form-check form-check-inline">
+					<input class="form-check-input" type="checkbox" name="way[]" value="電車"
+						id="way0">
+					<label class="form-check-label" for="way0"> 電車 </label>
+				</div>
+				<div class="form-check form-check-inline"> <input
+						class="form-check-input" type="checkbox" name="way[]" value="バス"
+						id="way1"> <label class="form-check-label" for="way1"> バス </label>
+				</div>
+				<div class="form-check form-check-inline">
+					<input class="form-check-input" type="checkbox" name="way[]" value="徒歩"
+						id="way2">
+					<label class="form-check-label" for="way2"> 徒歩 </label>
+				</div>
+			</div>
+
+			<div class="col-6">
+				<select class="form-select" name="multi_type" multiple>
+					<option value="1">One</option>
+					<option value="2">Two</option>
+					<option value="3">Three</option>
+				</select>
+			</div>
+
+			<div class="col-12">
+				<label for="tag01" class="form-label">タグ</label>
+				<div class="form-check form-check-inline">
+					<input type="text" name="tags[]" class="form-control" value="">
+				</div>
+				<div class="form-check form-check-inline">
+					<input type="text" name="tags[]" class="form-control" value="">
+				</div>
+				<div class="form-check form-check-inline">
+					<input type="text" name="tags[]" class="form-control" value="">
+				</div>
+			</div>
+			<div class="col-6">
+				<label for="memo01" class="form-label">内容</label>
+				<textarea name="memo" class="form-control" id="memo01" rows="3"></textarea>
+			</div>
+			<div class="col-12">
+				<button class="btn btn-primary" type="submit">Submit form</button>
+				<input type="hidden" name="id" value="">
+			</div>
+		</form>
+	</body>
+</html>
