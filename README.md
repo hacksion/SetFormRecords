@@ -1,7 +1,9 @@
-# SetFormRecords
+# 非同期データをフォームへセットするライブラリー
 
-*サンプルデータ
+## 編集時などに非同期で登録したデータを取得して既存のフォームへデータをセットする
+取得したデータのフォーマットはjson形式にしてキー名は「type名」値はデータ
 
+*以下データはサンプル用
 let post_data = {
 	img_type : 'url.jpg',
 	id : 1,
@@ -15,5 +17,9 @@ let post_data = {
 	memo : "テスト内容\nテスト内容"
 }
 
+## ターゲットにするフォーム名（name）をインスタンスするオプションにセット
+
 let setFormRecords = new SetFormRecords("myForm");
+
+## setDataメソッド　オプションはjsonになったデータをセットするとターゲットform内の入力項目へデータがセットされる
 setFormRecords.setData(post_data);
