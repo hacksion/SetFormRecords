@@ -7,7 +7,7 @@ const emailValid = e => {
     if (!e.value.match(/^[a-zA-Z0-9_+-]+(\.[a-zA-Z0-9_+-]+)*@([a-zA-Z0-9][a-zA-Z0-9-]*[a-zA-Z0-9]*\.)+[a-zA-Z]{2,}$/)) {
         e.classList.add('error');
         let span = document.createElement('span');
-        span.setAttribute('class', 'warning_msg');
+        span.setAttribute('class', 'd-block text-danger');
         span.textContent = 'メールアドレス形式で入力してください';
         e.parentNode.appendChild(span);
     }
@@ -21,7 +21,7 @@ const emptyValid = e => {
     if (!e.value) {
         e.classList.add('error');
         let span = document.createElement('span');
-        span.setAttribute('class', 'warning_msg');
+        span.setAttribute('class', 'd-block text-danger');
         span.textContent = '必須項目です';
         e.parentNode.appendChild(span);
     }
