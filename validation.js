@@ -32,14 +32,49 @@ const htmlTagsRep = e => {
     e.value = e.value.replace(/(<([^>]+)>)/gi, '');
 }
 
+const valToFunc = {
+    emailValid: e => {
+        emptyValid(e);
+    },
+    emptyValid: e => {
+        emptyValid(e);
+    },
+    htmlTagsRep: e => {
+        htmlTagsRep(e);
+    },
+}
+
 document.addEventListener('DOMContentLoaded', () => {
 
     (() => {
         [].slice.call(document.querySelectorAll('.needs-validation')).forEach(form => {
+
+            for (const elm of form) {
+                if (elm.hasAttribute('required')) {
+                    let event = elm.dataset.event ? elm.dataset.event : '';
+                    if (event) {
+                        let obj = (new Function('return ' + event))();
+                        Object.keys(obj).forEach(evt => {
+                            obj[evt].forEach(function(func) {
+                                elm.addEventListener(evt, e => {
+                                    if (valToFunc[func]) valToFunc[func](e.target);
+                                });
+                            });
+                        });
+                    }
+                }
+            }
+
             form.addEventListener('submit', e => {
                 if (!form.checkValidity()) {
                     e.preventDefault();
                     e.stopPropagation();
+                }
+                for (const elm of form) {
+                    if (elm.hasAttribute('required')) {
+                        elm.focus();
+                        elm.blur();
+                    }
                 }
                 form.classList.add('was-validated');
             }, false)
@@ -47,8 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
     })();
 
 });
-
 /*
-
- onblur="emptyValid(this); htmlTagsRep(this)"
+  data-event="{blur:['emailValid']}"
+  data-event="{blur:['emptyValid', 'htmlTagsRep']}"
 */
