@@ -34,7 +34,7 @@ const htmlTagsRep = e => {
 
 const valToFunc = {
     emailValid: e => {
-        emptyValid(e);
+        emailValid(e);
     },
     emptyValid: e => {
         emptyValid(e);
