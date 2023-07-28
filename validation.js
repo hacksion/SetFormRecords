@@ -55,8 +55,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (event) {
                         let obj = (new Function('return ' + event))();
                         Object.keys(obj).forEach(evt => {
-                            obj[evt].forEach(function(func) {
-                                elm.addEventListener(evt, e => {
+                            elm.addEventListener(evt, e => {
+                                obj[evt].forEach(function(func) {
                                     if (valToFunc[func]) valToFunc[func](e.target);
                                 });
                             });
