@@ -1,0 +1,12 @@
+{
+  "name": "setformrecords",
+  "version": "1.0.0",
+  "description": "## 編集時などに非同期で登録したデータを取得して既存のフォームへデータをセットする 取得したデータのフォーマットはjson形式にしてキー名は「type名」値はデータ",
+  "main": "SetFormRecords.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
