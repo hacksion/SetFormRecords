@@ -2,8 +2,10 @@
 //bootstrap addon
 const removeMsg = (e) => {
     e.classList.remove('error');
-    if (e.parentNode.lastElementChild.nodeName == 'SPAN') {
-        e.parentNode.lastElementChild.remove();
+    if (e.parentNode && e.parentNode.lastElementChild) {
+        if (e.parentNode.lastElementChild.nodeName == 'SPAN') {
+            e.parentNode.lastElementChild.remove();
+        }
     }
 };
 const createMsg = (e, msg) => {
@@ -11,7 +13,8 @@ const createMsg = (e, msg) => {
     let span = document.createElement('span');
     span.setAttribute('class', 'd-block text-danger');
     span.textContent = msg;
-    e.parentNode.appendChild(span);
+    if (e.parentNode)
+        e.parentNode.appendChild(span);
 };
 const emailValid = (e) => {
     removeMsg(e);
@@ -47,7 +50,7 @@ const validationExec = () => {
                 if (event) {
                     let obj = (new Function('return ' + event))();
                     Object.keys(obj).forEach(evt => {
-                        elm.addEventListener(evt, (e) => {
+                        elm.addEventListener(evt, e => {
                             obj[evt].forEach((func) => {
                                 if (valToFunc[func])
                                     valToFunc[func](e.target);
@@ -57,17 +60,17 @@ const validationExec = () => {
                 }
             }
         });
-        form.addEventListener('submit', (e) => {
+        form.addEventListener('submit', e => {
             if (!form.checkValidity()) {
                 e.preventDefault();
                 e.stopPropagation();
             }
-            for (const elm of form) {
+            form.forEach((elm) => {
                 if (elm.hasAttribute('required')) {
                     elm.focus();
                     elm.blur();
                 }
-            }
+            });
             form.classList.add('was-validated');
         }, false);
     });
